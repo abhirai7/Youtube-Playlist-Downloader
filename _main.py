@@ -58,38 +58,32 @@ def download_video():
     path = os.path.join(download_directory, url_obj.title)
     os.mkdir(path)
 
-    # Create a progress label
     progress_label = Label(bottom_frame, text="", font=("Segoe UI", 12), fg="#3498db")
     progress_label.pack(pady=20)
 
-    # Start the download in a separate thread
     threading.Thread(target=download_all, args=(url_obj, path)).start()
 
 root = Tk()
 root.title("YouTube Downloader")
 root.geometry("650x650")
 
-# Load the YouTube logo image
 image = Image.open("youtube_logo.png")
-image = image.resize((650, 300), Image.BICUBIC)  # Resize the image to match the canvas size
+image = image.resize((650, 300), Image.BICUBIC) 
 youtube_logo = ImageTk.PhotoImage(image)
 
-# Create a canvas with the YouTube logo as the background
 canvas = Canvas(root, width=650, height=200, highlightthickness=0,background="black")
 canvas.pack(padx=10, pady=10)
-canvas.create_image(325, 100, image=youtube_logo)  # Changed the coordinates to center the image
+canvas.create_image(325, 100, image=youtube_logo)
 
 top_margin = Frame(root, bg="black", height=3)
 top_margin.pack(padx=10,pady=10, fill=X)
 
 app_image = Image.open("app_logo.png")
-app_image = app_image.resize((150, 100), Image.BICUBIC)  # Resize the image to match the canvas size
+app_image = app_image.resize((150, 100), Image.BICUBIC)  
 app_logo = ImageTk.PhotoImage(app_image)
 
-# Create a canvas with the app logo as the background
 app_canvas = Canvas(root, width=200, height=100, highlightthickness=0)
 app_canvas.place(x=410,y=270)
-# app_canvas.pack(padx=10, pady=10)
 app_canvas.create_image(100, 50, image=app_logo)
 top_frame = Frame(root, bg="#f1f1f1")
 top_frame.pack(side=RIGHT,padx=10, pady=10)
@@ -98,15 +92,11 @@ top_label = Label(top_frame, text="YouTube Downloader", font=("Segoe UI", 12, "b
                    bg="#f1f1f1", bd=0, highlightthickness=0, relief="solid")
 
 top_label.pack()
-# Create a canvas to draw the rounded border
 border_canvas = Canvas(top_frame, width=250, height=30, highlightthickness=0, bg="#f1f1f1")
 border_canvas.pack()
 
-# Draw the rounded border
 border_canvas.create_roundrect(10, 10, 240, 30, fill="#2ecc71", outline="#2ecc71", width=2)
 
-# bottom_margin = Frame(root, bg="black", height=3)
-# bottom_margin.pack(padx=10, pady=10, fill=X)
 
 middle_frame = Frame(root, bg="#f1f1f1")
 middle_frame.pack(padx=10, pady=20)
@@ -124,7 +114,6 @@ url_entry.bind("<FocusOut>", focus_out)
 url_entry.pack(pady=15, ipady=5, ipadx=5)
 download_image = PhotoImage(file = "download_button.png") 
   
-# Create button and image 
 download_button = Button(middle_frame,command=download_video, image = download_image,width=210,height=55,
              borderwidth = 0) 
   
@@ -134,14 +123,7 @@ download_button.bind("<Leave>", on_leave)
 download_button.bind("<Button-1>", on_hover)
 download_button.bind("<ButtonRelease-1>", on_leave)  
 
-# download_button = Button(middle_frame, text="Download", font=("Arial", 12), bg="#007bff", fg="white", 
-#                             activebackground="#0069d9", activeforeground="white", 
-#                             padx=10, pady=5, relief="flat", borderwidth=0)
-# download_button.configure(cursor="hand2")
-# download_button.pack(pady=10)
-# download_button = Button(middle_frame, text="Download", command=download_video, 
-#                           font=("Segoe UI", 12, "bold"), bg="#2ecc71", fg="white")
-# download_button.pack(pady=25)
+
 
 bottom_frame = Frame(root, bg="#f1f1f1")
 bottom_frame.pack(padx=10, pady=20, fill=X)
